@@ -1,7 +1,6 @@
 # java-maven-template
 
-[![Build Status](https://travis-ci.com/JosephMaria/java-maven-template.svg?branch=master)](https://travis-ci.com/JosephMaria/java-maven-template)
-[![codecov](https://codecov.io/gh/JosephMaria/java-maven-template/branch/master/graph/badge.svg)](https://codecov.io/gh/JosephMaria/java-maven-template)
+[![Build Status](https://travis-ci.com/JosephMaria/vehicle-detecting-and-tracking.svg?branch=master)](https://travis-ci.com/JosephMaria/vehicle-detecting-and-tracking)
+[![codecov](https://codecov.io/gh/JosephMaria/vehicle-detecting-and-tracking/branch/master/graph/badge.svg)](https://codecov.io/gh/JosephMaria/vehicle-detecting-and-tracking)
 
-A Github template project for Java projects using Maven
-## Note: Remember to modify README.md and pom.xml files.
+Vehicle detecting and tracking using OpenCV and Java.

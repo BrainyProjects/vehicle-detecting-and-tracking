@@ -5,10 +5,10 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.joseph</groupId>
-    <artifactId>JavaMavenTemplate</artifactId>
+    <artifactId>VehicleDetectingAndTracking</artifactId>
     <version>1.0.0</version>
 
-    <name>Java Maven Template</name>
+    <name>Vehicle Detecting And Tracking</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
