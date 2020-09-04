@@ -27,6 +27,7 @@ public class VehicleDetector {
     private CascadeClassifier frontBusClassifier;
     private CascadeClassifier backCarClassifier;
     private CascadeClassifier backBusClassifier;
+
     // Result
     @Getter
     private MatOfRect frontCarRects;
@@ -38,26 +39,31 @@ public class VehicleDetector {
     private MatOfRect backCarRects;
     @Getter
     private MatOfRect backBusRects;
+
     // Threads
-    private Thread frontCarThread;
-    private Thread frontTruckThread;
-    private Thread frontBusThread;
-    private Thread backCarThread;
-    private Thread backBusThread;
+    private Runnable frontCarRunable;
+    private Runnable frontTruckRunable;
+    private Runnable frontBusRunable;
+    private Runnable backCarRunable;
+    private Runnable backBusRunable;
 
 
     public VehicleDetector(boolean frontSide) {
         if (frontSide) {
             frontCarClassifier = new CascadeClassifier(getAbsolutePathOfLocalResource(frontCarFile));
+            frontCarRunable = () -> frontCarClassifier.detectMultiScale(grayFrame, frontCarRects);
 
             frontBusClassifier = new CascadeClassifier(getAbsolutePathOfLocalResource(frontBusFile));
-
+            frontBusRunable = () -> frontBusClassifier.detectMultiScale(grayFrame, frontBusRects);
 
             frontTruckClassifier = new CascadeClassifier(getAbsolutePathOfLocalResource(frontTruckFile));
+            frontTruckRunable = () -> frontTruckClassifier.detectMultiScale(grayFrame, frontTruckRects);
         } else {
             backCarClassifier = new CascadeClassifier(getAbsolutePathOfLocalResource(backCarFile));
+            backCarRunable = () -> backCarClassifier.detectMultiScale(grayFrame, backCarRects);
 
             backBusClassifier = new CascadeClassifier(getAbsolutePathOfLocalResource(backBusFile));
+            backBusRunable = () -> backBusClassifier.detectMultiScale(grayFrame, backBusRects);
         }
     }
 
@@ -73,9 +79,9 @@ public class VehicleDetector {
         frontBusRects = new MatOfRect();
         frontTruckRects = new MatOfRect();
 
-        frontCarThread = new Thread(() -> frontCarClassifier.detectMultiScale(grayFrame, frontCarRects));
-        frontBusThread = new Thread(() -> frontBusClassifier.detectMultiScale(grayFrame, frontBusRects));
-        frontTruckThread = new Thread(() -> frontTruckClassifier.detectMultiScale(grayFrame, frontTruckRects));
+        Thread frontCarThread = new Thread(frontCarRunable);
+        Thread frontBusThread = new Thread(frontBusRunable);
+        Thread frontTruckThread = new Thread(frontTruckRunable);
 
         frontCarThread.start();
         frontBusThread.start();
@@ -89,8 +95,8 @@ public class VehicleDetector {
     public void detectFromBack(Mat frame) throws InterruptedException {
         processImage(frame);
 
-        backCarThread = new Thread(() -> backCarClassifier.detectMultiScale(grayFrame, backCarRects));
-        backBusThread = new Thread(() -> backBusClassifier.detectMultiScale(grayFrame, backBusRects));
+        Thread backCarThread = new Thread(backCarRunable);
+        Thread backBusThread = new Thread(backBusRunable);
 
         backCarRects = new MatOfRect();
         backBusRects = new MatOfRect();
