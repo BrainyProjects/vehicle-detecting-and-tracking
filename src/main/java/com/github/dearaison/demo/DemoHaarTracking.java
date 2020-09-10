@@ -15,7 +15,7 @@ import java.util.List;
  *
  * @author Joseph Maria
  */
-public class App {
+public class DemoHaarTracking {
     //    private static final String videoPath = "C:\\Users\\baotr\\Downloads\\By Canon 700D-20200904T022759Z-002\\By Canon 700D\\29082020\\MVI_2459.MOV";
     private static final String videoPath = "D:\\TheBestVideo.mp4";
     //    private static final String videoPath = "D:\\data\\20191018_122415.mp4";
@@ -35,7 +35,7 @@ public class App {
 
     public static void main(String[] args) throws InterruptedException {
         System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
-        App app = new App();
+        DemoHaarTracking app = new DemoHaarTracking();
         app.runApp();
     }
 

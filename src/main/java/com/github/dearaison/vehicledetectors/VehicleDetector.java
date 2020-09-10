@@ -15,7 +15,7 @@ import static com.github.dearaison.utilities.Utilities.getAbsolutePathOfLocalRes
  */
 public class VehicleDetector {
     // Cascade File
-    private static final String frontCarFile = "frontCar.xml";
+    private static final String frontCarFile = "car.xml";
     private static final String frontTruckFile = "frontBus.xml";
     private static final String frontBusFile = "frontTruck.xml";
     private static final String backCarFile = "backCar.xml";
