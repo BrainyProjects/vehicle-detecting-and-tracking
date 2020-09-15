@@ -29,6 +29,7 @@ public class DNNDemo {
     static int totalFrames = 0;
     static int totalMilis = 0;
 
+
     private static Scalar[] generateRandomColors() {
         Scalar[] res = new Scalar[CLASS_NAME.length];
         Random random = new Random();
@@ -57,7 +58,7 @@ public class DNNDemo {
 
     public static void main(String[] args) {
         System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
-        String filePath = "D:\\data\\20191018_122415.mp4";
+        String filePath = "D:\\KLTN_DATA___video+for+detect1.mp4";
         VideoCapture capture = new VideoCapture(filePath);
 
         Mat frame = new Mat();
